@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
+import { Link } from 'react-router-dom';
 
 const ProjectList = () => {
   const { projects } = useContext(GlobalContext);
-  console.log(projects)
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center">I miei progetti</h1>
+      <h1 className="text-center mb-3">I miei progetti</h1>
       <table className="table table-info">
         <thead>
           <tr className="text-center">
@@ -43,14 +43,14 @@ const ProjectList = () => {
                     'table-warning'
               }>
                 {project.status}
-                {project.status === 'Completato' && <i className="fas fa-check-circle" title="Completato"></i>}
-                {project.status === 'In corso' && <i className="fas fa-spinner fa-spin" title="In corso"></i>}
-                {project.status === 'In attesa' && <i className="fas fa-hourglass-half" title="In attesa"></i>}
+                {project.status === 'Completato' && <i className="ms-2 fas fa-check-circle" title="Completato"></i>}
+                {project.status === 'In corso' && <i className="ms-2 fas fa-spinner fa-spin" title="In corso"></i>}
+                {project.status === 'In attesa' && <i className="ms-2 fas fa-hourglass-half" title="In attesa"></i>}
               </td>
               <td>
 
                 {/* Placeholder per i dettagli */}
-                <span>Dettagli</span>
+                <Link to={`/project/${project.id}`} > Visualizza</Link>
               </td>
 
 
@@ -58,7 +58,7 @@ const ProjectList = () => {
           ))}
         </tbody>
       </table>
-    </div>
+    </div >
   );
 };
 

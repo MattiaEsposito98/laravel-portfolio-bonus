@@ -1,10 +1,12 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
+  const { id } = useParams()
 
   const fetchProjects = () => {
     axios
@@ -19,7 +21,7 @@ const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     fetchProjects();
-  }, []); // Assicurati di avere le parentesi quadre qui per eseguire l'effetto solo all'avvio
+  }, []);
 
   return (
     <GlobalContext.Provider value={{ projects, fetchProjects }}>
